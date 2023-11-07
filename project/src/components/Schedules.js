@@ -1,4 +1,6 @@
 import { useState, useRef } from 'react';
+import { FiXCircle } from 'react-icons/fi';
+import { MdAddBox } from 'react-icons/md';
 
 const initialForm = {
   id: 0,
@@ -45,6 +47,12 @@ const Schedules = () => {
     //setForm(form) -> 얕은 비교로 주소값이 동일하므로 reRendering되지 않는다. 따라서 전개 연산자{...form}를 사용해 깊은 복사로 주소값이 달라지도록 한다.
   };
 
+  const onRemove = (id) => {
+    //filter : 조건으로 배열에서 삭제하고 삭제된 새 배열을 반환함
+    //const newSchedules = schedules.filter((s) => s.id !== id);
+    setSchedules(schedules.filter((s) => s.id !== id));
+  };
+
   return (
     <>
       <h1>스케줄 등록</h1>
@@ -63,7 +71,9 @@ const Schedules = () => {
           onChange={handleChange}
           value={form.content}
         />
-        <button type="submit">등록하기</button>
+        <button type="submit">
+          <MdAddBox />
+        </button>
       </form>
       <hr />
       <ul>
@@ -73,6 +83,7 @@ const Schedules = () => {
           ) => (
             <li key={s.id}>
               {s.date}/{s.content}
+              <FiXCircle onDoubleClick={() => onRemove(s.id)} />
             </li>
           ),
         )}

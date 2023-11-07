@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next';
 import React, { useEffect, useRef } from 'react';
 import MainTitle from '../commons/MainTitle';
 
-const LoginForm = () => {
+const LoginForm = ({ onSubmit, onChange, form, error }) => {
+  /* 컨테이너에서 props를 받아와서 프레젠테이션 처리 */
   const { t } = useTranslation();
   // let num = 10; // rendering 할 때마다 10으로 초기화됨
   // const [language, setLanguage] = useState('한국어');
@@ -51,7 +52,8 @@ const LoginForm = () => {
       {/* <div>
         {t('현재언어')}: {language}
       </div> */}
-      <form>
+      <form onSubmit={onSubmit}>
+        {/* onSubmit, onChange 는 LoginContainer의 속성값에서 받아온다. */}
         {/* input에 ref 달기
         <input
           type="text"
@@ -66,7 +68,22 @@ const LoginForm = () => {
           placeholder={t('아이디')}
           ref={refUserid}
         /> */}
-        <input type="password" name="userPw" placeholder={t('비밀번호')} />
+        <input
+          type="text"
+          name="email"
+          placeholder={t('이메일')}
+          onChange={onChange}
+          value={form.email}
+        />
+        {error.email && <div>{error.email}</div>}
+        <input
+          type="password"
+          name="password"
+          placeholder={t('비밀번호')}
+          onChange={onChange}
+          value={form.password}
+        />
+        {error.password && <div>{error.password}</div>}
         <button type="submit">{t('로그인')}</button>
       </form>
       {/* <button type="button" onClick={handleLanguage} data-lang="ko">

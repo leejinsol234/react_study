@@ -13,9 +13,15 @@ const Average = () => {
 
   const handleChange = useCallback((e) => setNumber(e.currentTarget.value), []);
   //[] -> 처음에 마운트 될 때 1번만 생성됨
+  /*
   const handleClick = useCallback(
     () => setList(list.concat(Number(number))),
     [list, number], // []안에는 상태값에 영향을 받는 함수를 기준이 되도록 입력한다.
+  );
+  */
+  // 위와 같이 직접 값을 대입하지 않고 함수형태로 매개변수를 넣는 방법도 있다.
+  const handleClick = useCallback(() =>
+    setList((list) => list.concat(Number(number)), [number]),
   );
   //함수가 정해진 기준에서만 캐싱되도록 하기 위해 useCallback을 사용한다.
 

@@ -1,6 +1,34 @@
 import { useTranslation } from 'react-i18next';
-import React, { useEffect, useRef } from 'react';
-import MainTitle from '../commons/MainTitle';
+import { TitleStyle } from '../../components/commons/TitleStyle';
+import { InputText } from '../../components/commons/InputStyle';
+
+//여러 개를 import를 가져올 때는 {}안에 작성한다.
+//default로 내보내진 컴포넌트는 이름을 바꿔서 가져올 수 있지만
+//아니면 이름을 바꿔서 가져올 수 없다.
+//단, as로 별칭을 만들어 사용할 수 있다.
+//{ num1 as n1, num2 }
+
+//styled.h1이 tagged함수이다.
+//function h1(...args){
+//   args로(매개변수로) ``안의 속성들이 호출된다
+//}
+
+// const darkModeCss = css`
+//   background: #000;
+//   color: #fff;
+// `;
+
+// const TitleStyle = styled.h1`
+//   border-bottom: 2px solid #000;
+//   font-size: 1.75rem;
+//   padding-bottom: 10px;
+//   margin-bottom: 20px;
+//   color: ${(props) => props.color || 'black'};
+//   span {
+//     border: 2px solid red;
+//   }
+//   ${(props) => props.theme === 'dark' && darkModeCss}
+// `; //함수를 정의하면 내부에서 props값이 넘어온다.
 
 const LoginForm = ({ onSubmit, onChange, form, error }) => {
   /* 컨테이너에서 props를 받아와서 프레젠테이션 처리 */
@@ -47,7 +75,7 @@ const LoginForm = ({ onSubmit, onChange, form, error }) => {
 
   return (
     <>
-      <MainTitle>{t('로그인')}</MainTitle>
+      <TitleStyle>{t('로그인')}</TitleStyle>
 
       {/* <div>
         {t('현재언어')}: {language}
@@ -68,7 +96,7 @@ const LoginForm = ({ onSubmit, onChange, form, error }) => {
           placeholder={t('아이디')}
           ref={refUserid}
         /> */}
-        <input
+        <InputText
           type="text"
           name="email"
           placeholder={t('이메일')}
@@ -76,7 +104,7 @@ const LoginForm = ({ onSubmit, onChange, form, error }) => {
           value={form.email}
         />
         {error.email && <div>{error.email}</div>}
-        <input
+        <InputText
           type="password"
           name="password"
           placeholder={t('비밀번호')}

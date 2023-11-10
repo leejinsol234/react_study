@@ -1,0 +1,23 @@
+.header {
+    display: flex;
+    height: 60px;
+    background: skyblue;
+    align-items: center;
+    justify-content: flex-end;
+
+        button {
+            height: 45px;
+            border: 2px solid #000;
+            background: white;
+
+            &.on {
+                background: orange;
+            }
+        }
+
+}
+// CSS Module이 아닌 파일에서 CSS Module 사용하기
+:global .red {
+    color: red;
+}
+
